@@ -1,0 +1,122 @@
+{
+  "total_count": 4905,
+  "incomplete_results": false,
+  "items": [
+    {
+      "url": "https://api.github.com/repos/servo/saltfs/issues/789",
+      "repository_url": "https://api.github.com/repos/servo/saltfs",
+      "labels_url": "https://api.github.com/repos/servo/saltfs/issues/789/labels{/name}",
+      "comments_url": "https://api.github.com/repos/servo/saltfs/issues/789/comments",
+      "events_url": "https://api.github.com/repos/servo/saltfs/issues/789/events",
+      "html_url": "https://github.com/servo/saltfs/issues/789",
+      "id": 293260512,
+      "number": 789,
+      "title": "Stop setting $CARGO_HOME to its default value",
+      "user": {
+        "login": "SimonSapin",
+        "id": 291359,
+        "avatar_url": "https://avatars0.githubusercontent.com/u/291359?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/SimonSapin",
+        "html_url": "https://github.com/SimonSapin",
+        "followers_url": "https://api.github.com/users/SimonSapin/followers",
+        "following_url": "https://api.github.com/users/SimonSapin/following{/other_user}",
+        "gists_url": "https://api.github.com/users/SimonSapin/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/SimonSapin/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/SimonSapin/subscriptions",
+        "organizations_url": "https://api.github.com/users/SimonSapin/orgs",
+        "repos_url": "https://api.github.com/users/SimonSapin/repos",
+        "events_url": "https://api.github.com/users/SimonSapin/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/SimonSapin/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 341722396,
+          "url": "https://api.github.com/repos/servo/saltfs/labels/E-easy",
+          "name": "E-easy",
+          "color": "02e10c",
+          "default": false
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignee": null,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2018-01-31T18:16:09Z",
+      "updated_at": "2018-01-31T18:16:49Z",
+      "closed_at": null,
+      "author_association": "MEMBER",
+      "body": "In `buildbot/master/files/config/environments.py` we set `CARGO_HOME` to Cargo’s default value. Now that `mach` does not set it (since https://github.com/servo/servo/pull/19395), this has no effect. We can remove these lines.",
+      "score": 1.0
+    },
+    {
+      "url": "https://api.github.com/repos/servo/servo/issues/19916",
+      "repository_url": "https://api.github.com/repos/servo/servo",
+      "labels_url": "https://api.github.com/repos/servo/servo/issues/19916/labels{/name}",
+      "comments_url": "https://api.github.com/repos/servo/servo/issues/19916/comments",
+      "events_url": "https://api.github.com/repos/servo/servo/issues/19916/events",
+      "html_url": "https://github.com/servo/servo/issues/19916",
+      "id": 293237180,
+      "number": 19916,
+      "title": "Use a macro to create null-terminated C strings",
+      "user": {
+        "login": "jdm",
+        "id": 27658,
+        "avatar_url": "https://avatars1.githubusercontent.com/u/27658?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/jdm",
+        "html_url": "https://github.com/jdm",
+        "followers_url": "https://api.github.com/users/jdm/followers",
+        "following_url": "https://api.github.com/users/jdm/following{/other_user}",
+        "gists_url": "https://api.github.com/users/jdm/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/jdm/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/jdm/subscriptions",
+        "organizations_url": "https://api.github.com/users/jdm/orgs",
+        "repos_url": "https://api.github.com/users/jdm/repos",
+        "events_url": "https://api.github.com/users/jdm/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/jdm/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "labels": [
+        {
+          "id": 89384911,
+          "url": "https://api.github.com/repos/servo/servo/labels/C-assigned",
+          "name": "C-assigned",
+          "color": "02d7e1",
+          "default": false
+        },
+        {
+          "id": 15997664,
+          "url": "https://api.github.com/repos/servo/servo/labels/E-easy",
+          "name": "E-easy",
+          "color": "02e10c",
+          "default": false
+        },
+        {
+          "id": 135307111,
+          "url": "https://api.github.com/repos/servo/servo/labels/I-cleanup",
+          "name": "I-cleanup",
+          "color": "e11d21",
+          "default": false
+        }
+      ],
+      "state": "open",
+      "locked": false,
+      "assignee": null,
+      "assignees": [],
+      "milestone": null,
+      "comments": 3,
+      "created_at": "2018-01-31T17:04:06Z",
+      "updated_at": "2018-01-31T22:03:56Z",
+      "closed_at": null,
+      "author_association": "MEMBER",
+      "body": "When we write them by hand (eg. `b\"some string\\0\"`), we invariably get them wrong in ways that are tricky to notice (https://github.com/servo/servo/pull/19915). We should use a macro like this instead:\r\n```rust\r\nmacro_rules! c_str {\r\n    ($str:expr) => {\r\n        concat!($str, \"\\0\").as_bytes()\r\n    }\r\n}\r\n```\r\nThis would allow us to write code like `(c_str!(\"PEParseDeclarationDeclExpected\"), Action::Skip)` instead of https://github.com/emilio/servo/blob/d82c54bd3033cc3277ebeb4854739bebe4e20f2f/ports/geckolib/error_reporter.rs#L237. We should be able to clean up all of the uses in that file.\r\n\r\nNo need to run any automated tests; if it builds with `./mach build-geckolib`, then it's good enough for a pull request.",
+      "score": 1.0
+    }
+  ]
+}
